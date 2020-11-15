@@ -82,7 +82,7 @@ let main argv =
                 |> List.map (fun ext -> sprintf "%s.%s" out ext) 
                 |> fun list -> (list.[0], list.[1], list.[2])
 
-        async { return! sprintf "--output %s --sub-format srv3 --write-auto-sub --format best --no-progress --no-check-certificate %s" mp4 url |> exec "youtube-dl" }
+        async { return! sprintf "--output %s --sub-format srv3 --write-auto-sub --format best --no-progress --no-check-certificate --socket-timeout 5 %s" mp4 url |> exec "youtube-dl" }
         |> Async.RunSynchronously            
         |> ignore
     
